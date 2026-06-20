@@ -12,7 +12,7 @@ body{
     margin:0;
     padding:20px;
     font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#a18cd1);
+    background:linear-gradient(135deg,#ff6ec4,#7873f5,#4facfe);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -23,7 +23,7 @@ body{
 .game-box{
     background:white;
     width:90%;
-    max-width:420px;
+    max-width:500px;
     padding:25px;
     border-radius:25px;
     text-align:center;
@@ -154,6 +154,13 @@ button{
     <div class="score">
         ⭐ Stars: <span id="stars">0</span>
     </div>
+    <div class="score">
+    🔥 Streak: <span id="streak">0</span>
+</div>
+
+<div class="score">
+    🏅 Badge: <span id="badge">Beginner</span>
+</div>
 
     <div class="footer">
         Made with ❤️ by Prem Kumar
@@ -165,6 +172,7 @@ button{
 
 let score = 0;
 let stars = 0;
+let streak = 0;
 let num1;
 let num2;
 let gameOver = false;
@@ -192,10 +200,22 @@ function checkAnswer(){
     if(answer === correctAnswer){
 
         score++;
-        stars++;
+stars++;
+streak++;
 
-        document.getElementById("score").innerHTML = score;
-        document.getElementById("stars").innerHTML = stars;
+document.getElementById("score").innerHTML = score;
+document.getElementById("stars").innerHTML = stars;
+document.getElementById("streak").innerHTML = streak;
+
+if(stars >= 50){
+    document.getElementById("badge").innerHTML = "🥇 Gold";
+}
+else if(stars >= 25){
+    document.getElementById("badge").innerHTML = "🥈 Silver";
+}
+else if(stars >= 10){
+    document.getElementById("badge").innerHTML = "🥉 Bronze";
+}
 
         const messages = [
             "🎉 Awesome!",
@@ -217,7 +237,8 @@ function checkAnswer(){
 
     }else{
 
-        gameOver = true;
+        streak = 0;
+document.getElementById("streak").innerHTML = "0";
 
         document.getElementById("result").innerHTML =
             "😊 Good Try! The answer was " + correctAnswer;
@@ -235,11 +256,14 @@ function checkAnswer(){
 function restartGame(){
 
     score = 0;
-    stars = 0;
-    gameOver = false;
+stars = 0;
+streak = 0;
+gameOver = false;
 
     document.getElementById("score").innerHTML = "0";
     document.getElementById("stars").innerHTML = "0";
+    document.getElementById("streak").innerHTML = "0";
+document.getElementById("badge").innerHTML = "Beginner";
     document.getElementById("result").innerHTML = "";
     document.getElementById("answer").value = "";
     document.getElementById("answer").disabled = false;
