@@ -95,14 +95,18 @@ button{
 </head>
 
 <body>
+    <div style="position:fixed;top:20px;left:20px;font-size:40px;">🌈</div>
+<div style="position:fixed;top:20px;right:20px;font-size:40px;">🧮</div>
+<div style="position:fixed;bottom:20px;left:20px;font-size:40px;">⭐</div>
+<div style="position:fixed;bottom:20px;right:20px;font-size:40px;">🏆</div> 
 
 <div class="game-box">
 
-    <h1>🧠 Math Challenge Pro</h1>
+    <h1>🧠 Math Challenge Kids</h1>
 
-    <p class="tagline">
-        🏆 Beat Your Score • Challenge Your Friends • Learn Math
-    </p>
+<p class="tagline">
+🌈 Learn • Play • Win Stars • Become a Math Champion!
+</p>
 
     <div id="question"></div>
 
@@ -128,8 +132,12 @@ button{
     <div id="result"></div>
 
     <div class="score">
-        🏆 Score: <span id="score">0</span>
-    </div>
+    🏆 Score: <span id="score">0</span>
+</div>
+
+<div class="score">
+    ⭐ Stars: <span id="stars">0</span>
+</div>
 
     <div class="footer">
         Made with ❤️ by Prem Kumar
@@ -140,6 +148,7 @@ button{
 <script>
 
 let score = 0;
+let stars = 0;
 let num1;
 let num2;
 let gameOver = false;
@@ -163,26 +172,38 @@ function checkAnswer(){
         Number(document.getElementById("answer").value);
 
     let correctAnswer = num1 + num2;
+if(answer === correctAnswer){
 
-    if(answer === correctAnswer){
+    score++;
+    stars++;
 
-        score++;
+    document.getElementById("score").innerHTML = score;
+    document.getElementById("stars").innerHTML = stars;
 
-        document.getElementById("score").innerHTML = score;
+    const messages = [
+        "🎉 Awesome!",
+        "🌟 Great Job!",
+        "🚀 Super Smart!",
+        "🏆 Math Champion!",
+        "⭐ Excellent!"
+    ];
 
-        document.getElementById("result").innerHTML =
-            "✅ Correct!";
+    let randomMessage =
+        messages[Math.floor(Math.random() * messages.length)];
 
-        document.getElementById("answer").value = "";
+    document.getElementById("result").innerHTML =
+        randomMessage;
 
-        newQuestion();
+    document.getElementById("answer").value = "";
+
+    newQuestion();
 
     }else{
 
         gameOver = true;
 
         document.getElementById("result").innerHTML =
-            "❌ Game Over! Correct Answer: " + correctAnswer;
+    "😊 Good Try! The answer was " + correctAnswer;
 
         document.getElementById("question").innerHTML =
             "🏁 Final Score: " + score;
@@ -196,10 +217,12 @@ function checkAnswer(){
 
 function restartGame(){
 
-    score = 0;
-    gameOver = false;
+  score = 0;
+stars = 0;
+gameOver = false;
 
     document.getElementById("score").innerHTML = "0";
+    document.getElementById("stars").innerHTML = "0";
     document.getElementById("result").innerHTML = "";
     document.getElementById("answer").value = "";
     document.getElementById("answer").disabled = false;
