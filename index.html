@@ -1,161 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>🧠 Math Challenge Pro</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<title>🧠 Math Challenge Pro</title>
 
-        .game-box {
-            background: rgba(255,255,255,0.95);
-            width: 90%;
-            max-width: 450px;
-            padding: 30px;
-            border-radius: 25px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-        }
+<style>
+body{
+    margin:0;
+    padding:20px;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
 
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
+.game-box{
+    background:white;
+    width:90%;
+    max-width:400px;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
 
-        .tagline {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
+h1{
+    margin-bottom:10px;
+}
 
-        #question {
-            font-size: 32px;
-            font-weight: bold;
-            margin: 20px 0;
-        }
+.tagline{
+    color:#555;
+    font-size:14px;
+    margin-bottom:20px;
+}
 
-        input {
-            width: 80%;
-            padding: 12px;
-            font-size: 18px;
-            text-align: center;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-        }
+#question{
+    font-size:32px;
+    font-weight:bold;
+    margin:20px 0;
+}
 
-        button {
-            padding: 12px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+input{
+    width:80%;
+    padding:12px;
+    font-size:18px;
+    text-align:center;
+    border:2px solid #4facfe;
+    border-radius:10px;
+}
 
-        .submit-btn {
-            background: #28a745;
-            color: white;
-        }
+button{
+    width:85%;
+    padding:12px;
+    margin-top:10px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
 
-        .play-btn {
-            background: #ff9800;
-            color: white;
-        }
+.submit-btn{
+    background:#28a745;
+    color:white;
+}
 
-        #result {
-            margin-top: 15px;
-            font-size: 20px;
-            font-weight: bold;
-        }
+.play-btn{
+    background:#ff9800;
+    color:white;
+}
 
-        .score-box {
-            margin-top: 20px;
-            font-size: 22px;
-            font-weight: bold;
-            color: #764ba2;
-        }
-    </style>
+#result{
+    margin-top:15px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.score{
+    margin-top:20px;
+    font-size:24px;
+    font-weight:bold;
+    color:#333;
+}
+
+.footer{
+    margin-top:15px;
+    font-size:12px;
+    color:#777;
+}
+</style>
 </head>
+
 <body>
 
 <div class="game-box">
 
-    <h1>🎮 Math Challenge</h1>
+    <h1>🧠 Math Challenge Pro</h1>
 
-    <p id="question"></p>
+    <p class="tagline">
+        🏆 Beat Your Score • Challenge Your Friends • Learn Math
+    </p>
 
-    <input type="number" id="answer" placeholder="Your Answer">
+    <div id="question"></div>
+
+    <input
+        type="number"
+        id="answer"
+        placeholder="Enter Answer">
 
     <br>
 
     <button class="submit-btn" onclick="checkAnswer()">
-        Submit
+        ✅ Submit Answer
     </button>
 
-    <button id="playAgainBtn"
-            class="play-btn"
-            onclick="restartGame()"
-            style="display:none;">
+    <button
+        id="playAgainBtn"
+        class="play-btn"
+        onclick="restartGame()"
+        style="display:none;">
         🔄 Play Again
     </button>
 
-    <p id="result"></p>
+    <div id="result"></div>
 
-    <p>
-        🏆 Score:
-        <span id="score">0</span>
-    </p>
+    <div class="score">
+        🏆 Score: <span id="score">0</span>
+    </div>
+
+    <div class="footer">
+        Made with ❤️ by Prem Kumar
+    </div>
 
 </div>
 
 <script>
 
 let score = 0;
-let num1, num2;
+let num1;
+let num2;
 let gameOver = false;
 
-function newQuestion() {
+function newQuestion(){
 
-    if (gameOver) return;
+    if(gameOver) return;
 
-    num1 = Math.floor(Math.random() * 20) + 1;
-    num2 = Math.floor(Math.random() * 20) + 1;
+    num1 = Math.floor(Math.random()*20)+1;
+    num2 = Math.floor(Math.random()*20)+1;
 
     document.getElementById("question").innerHTML =
         num1 + " + " + num2 + " = ?";
 }
 
-function checkAnswer() {
+function checkAnswer(){
 
-    if (gameOver) return;
+    if(gameOver) return;
 
     let answer =
         Number(document.getElementById("answer").value);
 
     let correctAnswer = num1 + num2;
 
-    if (answer === correctAnswer) {
+    if(answer === correctAnswer){
 
         score++;
 
+        document.getElementById("score").innerHTML = score;
+
         document.getElementById("result").innerHTML =
             "✅ Correct!";
-
-        document.getElementById("score").innerHTML = score;
 
         document.getElementById("answer").value = "";
 
         newQuestion();
 
-    } else {
+    }else{
 
         gameOver = true;
 
@@ -168,11 +190,11 @@ function checkAnswer() {
         document.getElementById("answer").disabled = true;
 
         document.getElementById("playAgainBtn").style.display =
-            "inline-block";
+            "block";
     }
 }
 
-function restartGame() {
+function restartGame(){
 
     score = 0;
     gameOver = false;
