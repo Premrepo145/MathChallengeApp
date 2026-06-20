@@ -1,45 +1,49 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🧠 Math Challenge Pro</title>
+<title>🧠 Math Challenge Kids</title>
 
 <style>
 body{
     margin:0;
     padding:20px;
     font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#4facfe,#00f2fe);
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#a18cd1);
     display:flex;
     justify-content:center;
     align-items:center;
     min-height:100vh;
+    overflow:hidden;
 }
 
 .game-box{
     background:white;
     width:90%;
-    max-width:400px;
+    max-width:420px;
     padding:25px;
-    border-radius:20px;
+    border-radius:25px;
     text-align:center;
-    box-shadow:0 0 20px rgba(0,0,0,0.2);
+    box-shadow:0 0 25px rgba(0,0,0,0.2);
+    z-index:10;
 }
 
 h1{
     margin-bottom:10px;
+    color:#333;
 }
 
 .tagline{
-    color:#555;
+    color:#666;
     font-size:14px;
     margin-bottom:20px;
 }
 
 #question{
-    font-size:32px;
+    font-size:34px;
     font-weight:bold;
     margin:20px 0;
 }
@@ -80,10 +84,9 @@ button{
 }
 
 .score{
-    margin-top:20px;
-    font-size:24px;
+    margin-top:15px;
+    font-size:22px;
     font-weight:bold;
-    color:#333;
 }
 
 .footer{
@@ -91,22 +94,35 @@ button{
     font-size:12px;
     color:#777;
 }
+
+.bg{
+    position:fixed;
+    font-size:50px;
+    opacity:0.4;
+}
 </style>
 </head>
 
 <body>
-    <div style="position:fixed;top:20px;left:20px;font-size:40px;">🌈</div>
-<div style="position:fixed;top:20px;right:20px;font-size:40px;">🧮</div>
-<div style="position:fixed;bottom:20px;left:20px;font-size:40px;">⭐</div>
-<div style="position:fixed;bottom:20px;right:20px;font-size:40px;">🏆</div> 
+
+<!-- Background Decorations -->
+<div class="bg" style="top:20px;left:20px;">🌈</div>
+<div class="bg" style="top:20px;right:20px;">🎈</div>
+<div class="bg" style="bottom:20px;left:20px;">🧸</div>
+<div class="bg" style="bottom:20px;right:20px;">🚀</div>
+
+<div class="bg" style="top:35%;left:5%;">⭐</div>
+<div class="bg" style="top:55%;right:5%;">🧮</div>
+<div class="bg" style="top:70%;left:12%;">➕</div>
+<div class="bg" style="top:25%;right:12%;">🔢</div>
 
 <div class="game-box">
 
     <h1>🧠 Math Challenge Kids</h1>
 
-<p class="tagline">
-🌈 Learn • Play • Win Stars • Become a Math Champion!
-</p>
+    <p class="tagline">
+        🌈 Learn • Play • Win Stars • Become a Math Champion!
+    </p>
 
     <div id="question"></div>
 
@@ -132,12 +148,12 @@ button{
     <div id="result"></div>
 
     <div class="score">
-    🏆 Score: <span id="score">0</span>
-</div>
+        🏆 Score: <span id="score">0</span>
+    </div>
 
-<div class="score">
-    ⭐ Stars: <span id="stars">0</span>
-</div>
+    <div class="score">
+        ⭐ Stars: <span id="stars">0</span>
+    </div>
 
     <div class="footer">
         Made with ❤️ by Prem Kumar
@@ -172,38 +188,39 @@ function checkAnswer(){
         Number(document.getElementById("answer").value);
 
     let correctAnswer = num1 + num2;
-if(answer === correctAnswer){
 
-    score++;
-    stars++;
+    if(answer === correctAnswer){
 
-    document.getElementById("score").innerHTML = score;
-    document.getElementById("stars").innerHTML = stars;
+        score++;
+        stars++;
 
-    const messages = [
-        "🎉 Awesome!",
-        "🌟 Great Job!",
-        "🚀 Super Smart!",
-        "🏆 Math Champion!",
-        "⭐ Excellent!"
-    ];
+        document.getElementById("score").innerHTML = score;
+        document.getElementById("stars").innerHTML = stars;
 
-    let randomMessage =
-        messages[Math.floor(Math.random() * messages.length)];
+        const messages = [
+            "🎉 Awesome!",
+            "🌟 Great Job!",
+            "🚀 Super Smart!",
+            "🏆 Math Champion!",
+            "⭐ Excellent!"
+        ];
 
-    document.getElementById("result").innerHTML =
-        randomMessage;
+        let randomMessage =
+            messages[Math.floor(Math.random()*messages.length)];
 
-    document.getElementById("answer").value = "";
+        document.getElementById("result").innerHTML =
+            randomMessage;
 
-    newQuestion();
+        document.getElementById("answer").value = "";
+
+        newQuestion();
 
     }else{
 
         gameOver = true;
 
         document.getElementById("result").innerHTML =
-    "😊 Good Try! The answer was " + correctAnswer;
+            "😊 Good Try! The answer was " + correctAnswer;
 
         document.getElementById("question").innerHTML =
             "🏁 Final Score: " + score;
@@ -217,9 +234,9 @@ if(answer === correctAnswer){
 
 function restartGame(){
 
-  score = 0;
-stars = 0;
-gameOver = false;
+    score = 0;
+    stars = 0;
+    gameOver = false;
 
     document.getElementById("score").innerHTML = "0";
     document.getElementById("stars").innerHTML = "0";
@@ -239,3 +256,4 @@ newQuestion();
 
 </body>
 </html>
+```
